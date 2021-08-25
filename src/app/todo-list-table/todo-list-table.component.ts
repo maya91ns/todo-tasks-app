@@ -45,9 +45,12 @@ export class TodoListTableComponent implements OnInit {
   }
 
   deleteTask(event: any, taskNumber: number) {
+    if(!this.todoTasks[taskNumber].isChecked)
+    {
+      this.taskCounter--;
+    }
     this.todoTasks.forEach((value,index)=>{
       if(index==taskNumber) this.todoTasks.splice(index,1);
     });
-    this.taskCounter--;
   }
 }
