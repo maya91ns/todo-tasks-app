@@ -1,0 +1,29 @@
+<div class="content-table">
+    <input class="add-new-task-input" 
+      type="text" 
+      placeholder = {{placeholderText}}
+      id='input1'
+      (keyup.enter)="onEnter($event)"/>
+    <div class="tasks-table" *ngFor="let todoTask of todoTasks; let i=index">
+        <div class="new-task-input-box">
+            <div class="new-task-input" [ngClass]="{'strikethrough': todoTask.isChecked}">
+                <mat-checkbox 
+                    class="custom-checkbox" 
+                    (change)="checkTask(todoTask)"></mat-checkbox>
+                {{todoTask.name}}  
+              </div>
+              <button class="delete-task-button"
+                (click)="deleteTask($event, i)"
+                [ngClass]="{'hide': true}">
+                <img class="delete-task-ico" src="../assets/icons/delete.svg" alt="image" alt="image" />
+            </button>
+        </div>
+    </div>
+    <div class="bottom-row" [ngClass]="{'hide': todoTasks.length == 0}">
+        <span class="items-left-field">{{taskCounter}} items left</span>
+        <button class="clear-completed-tasks-button" 
+            (click)="clearCompleted($event)"
+            [ngClass]="{'hide': doneTasksCounter == 0}"
+        >Clear completed</button>
+    </div>
+  </div>

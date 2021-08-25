@@ -1,0 +1,123 @@
+.content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;  
+}
+
+.content-table {
+    display: grid;
+    width: 30%;
+    grid-template-columns: 100%;
+    grid-template-rows: 45px;
+    margin: 0 35% 0 35%;
+    border: 1px solid #e6e6e6;
+    box-shadow: 0 2px 4px 0 rgb(0 0 0 / 20%), 0 25px 50px 0 rgb(0 0 0 / 10%);
+}
+
+.tasks-table {
+    display: grid;
+    width: 100%;
+    grid-template-columns: 100%;
+    grid-template-rows: 45px;
+    border-top: 1px solid #e6e6e6;
+    border-bottom: 1px solid #e6e6e6;
+}
+
+.new-task-input-box {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between; 
+    margin-right: 10px;
+}
+
+.new-task-input {
+    margin-left: 5px;
+    line-height: 1.8em;
+    font-weight: 300;
+    font-size: 24px; 
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    color: #4d4d4d;
+
+    &.strikethrough {
+        text-decoration: line-through;
+        color: #d6d3d3;
+    }
+}
+
+.add-new-task-input{
+    margin-left: 34px;
+    line-height: 1.4em;
+    font-weight: 300;
+    font-size: 24px; 
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    background: rgba(0, 0, 0, 0.003);
+    color: #4d4d4d;
+    border: none;
+    outline: none; 
+
+    &::placeholder {
+        color: #d6d3d3;
+        font-style: italic;
+    }
+}
+
+.bottom-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0 10px 0 10px;
+    border-top: 1px solid #e6e6e6;
+
+    &.hide {
+        display: none;
+    }
+}
+
+.items-left-field {
+    font: 14px 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    color: #777;
+    height: 25px;
+    line-height: 1.7em;
+}
+
+.clear-completed-tasks-button {
+    font: 14px 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    color: #777;
+    height: 25px;
+    line-height: 1.7em;
+    border:none;
+    outline:none;
+    background:none;
+    cursor:grab;
+
+    &.hide {
+        display: none;
+    }
+
+    &:hover {
+        cursor: pointer;
+        text-decoration:underline;
+    }
+}
+
+.new-task-input-box:hover .delete-task-button {
+    display: inline-block;
+}
+
+.delete-task-button {
+    border:none;
+    background-color: #fff;
+    display: none;
+}
+
+.delete-task-ico {
+    height: 12px;
+    width: auto;
+}
+
+::ng-deep .custom-checkbox {
+    & .mat-checkbox-background, .mat-checkbox-frame {
+        border-radius: 70% !important;
+        background-color: #ccc !important;
+    }
+  }
