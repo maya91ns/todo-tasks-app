@@ -108,6 +108,10 @@
 
 .new-task-input-box:hover .delete-task-button {
     display: inline-block;
+
+    &.hide {
+        display: none;
+    }
 }
 
 .delete-task-button {

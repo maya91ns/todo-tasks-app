@@ -12,17 +12,22 @@ export class TodoListTableComponent implements OnInit {
   placeholderText = "What needs to be done?";
   doneTasksCounter = 0;
   taskIdCounter = 0;
+  hideDeleteIcon = false;
 
   constructor() {}
 
   ngOnInit(): void {
     this.todoTasks = JSON.parse(localStorage.getItem("tasks") as string);
-    this.taskIdCounter = this.todoTasks[this.todoTasks.length - 1].id;
+    if(this.todoTasks !== null)
+    {
+      this.taskIdCounter = this.todoTasks[this.todoTasks.length - 1].id;
+      for (var task of this.todoTasks) {
+        task.allowEdit = false;
+      }
+    }
     this.doneTasksCounter = Number((localStorage.getItem("doneTasksCounter")));
     this.taskCounter = Number((localStorage.getItem("taskCounter")));
-    for (var task of this.todoTasks) {
-      task.allowEdit = false;
-    }
+    this.hideDeleteIcon = false;
   }
 
   addNewTask(event: any) {
@@ -86,15 +91,37 @@ export class TodoListTableComponent implements OnInit {
       if(index==taskNumber) 
       {
         value.allowEdit = true;
+        this.hideDeleteIcon = true;
       }
     }); 
   }
 
-  editTask(taskNumber: number, taskInputId: string) {
+  enterKeyDown() {
+    document.execCommand('insertHTML', false, '<br><br>');
+    // prevent the default behaviour of return key pressed
+    return false;
+  }
+
+  editTask(event: any, taskNumber: number, taskInputId: string) {
+    const element = document.getElementById(taskInputId);
+    if(element !== null)
+    {
+      element.onkeydown = function (e) {
+      if (!e) {
+          e = window.event as KeyboardEvent;
+      }
+      if (e.preventDefault) {
+          e.preventDefault();
+      } else {
+          e.returnValue = false;
+        }
+      }
+    };
     this.todoTasks.forEach((value,index)=>{
       if(index==taskNumber) 
       {
         value.allowEdit = false;
+        this.hideDeleteIcon = false;
         value.name = document.getElementById(taskInputId)?.innerText;
       }
     }); 

@@ -14,20 +14,21 @@
             </div>
             <div class="new-task-input" 
                 id="{{'task_' + i}}"
-                [attr.contenteditable]="todoTask.allowEdit"
+                [attr.contenteditable]="todoTask.allowEdit" 
                 (dblclick)="onDoubleClick(i)"
-                (keyup.enter)="editTask(i, 'task_'+i)"
+                (keydown.enter)="enterKeyDown()"
+                (keyup.enter)="editTask($event, i, 'task_'+i)"
                 [ngClass]="{'strike-through': todoTask.isChecked, 'double-clicked': todoTask.allowEdit}">
                 {{todoTask.name}}  
             </div>
              <button class="delete-task-button"
                 (click)="deleteTask(i)"
-                [ngClass]="{'hide': true}">
+                [ngClass]="{'hide': hideDeleteIcon}">
                 <img class="delete-task-ico" src="../assets/icons/delete.svg" alt="image" alt="image" />
             </button>
         </div>
     </div>
-    <div class="bottom-row" [ngClass]="{'hide': todoTasks.length == 0}">
+    <div class="bottom-row" [ngClass]="{'hide': todoTasks === null || todoTasks.length == 0}">
         <span class="items-left-field">{{taskCounter}} items left</span>
         <button class="clear-completed-tasks-button" 
             (click)="clearCompleted()"
