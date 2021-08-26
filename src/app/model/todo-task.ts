@@ -1,4 +1,6 @@
 export interface TodoTask {
+    id: number;
     name?: string;
-    isChecked?: boolean;
+    isChecked: boolean;
+    allowEdit: boolean;
 }

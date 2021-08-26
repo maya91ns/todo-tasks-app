@@ -12,6 +12,7 @@
     margin: 0 35% 0 35%;
     border: 1px solid #e6e6e6;
     box-shadow: 0 2px 4px 0 rgb(0 0 0 / 20%), 0 25px 50px 0 rgb(0 0 0 / 10%);
+    z-index: 1;
 }
 
 .tasks-table {
@@ -27,25 +28,30 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between; 
-    margin-right: 10px;
 }
 
 .new-task-input {
-    margin-left: 5px;
+    width: 100%;
+    margin-left: 10px;
     line-height: 1.8em;
     font-weight: 300;
     font-size: 24px; 
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
     color: #4d4d4d;
 
-    &.strikethrough {
+    &.double-clicked {
+        border: 1px solid #000;
+        box-shadow: 0 2px 4px 0 rgb(0 0 0 / 20%), 0 25px 50px 0 rgb(0 0 0 / 10%);
+    }
+
+    &.strike-through {
         text-decoration: line-through;
         color: #d6d3d3;
     }
 }
 
 .add-new-task-input{
-    margin-left: 34px;
+    margin-left: 28px;
     line-height: 1.4em;
     font-weight: 300;
     font-size: 24px; 
@@ -113,11 +119,21 @@
 .delete-task-ico {
     height: 12px;
     width: auto;
+    margin-right: 10px;
+}
+
+.checkbox-box {
+    display: flex;
+    align-items: center;
+    margin-left: 5px;
+    margin-bottom: 7px;
 }
 
 ::ng-deep .custom-checkbox {
     & .mat-checkbox-background, .mat-checkbox-frame {
         border-radius: 70% !important;
         background-color: #ccc !important;
+        height: 20px;
+        width: 20px;
     }
-  }
+}
